@@ -1,0 +1,190 @@
+# Testing
+
+## Verification completed
+
+The initial release was verified on 12 November 2026.
+
+### Static integrity
+
+- `app.js` passed `node --check`.
+- Every JavaScript `#id` reference resolved to an element in `index.html`.
+- `data/catalog.json` parsed successfully.
+- The catalogue contained 258 unique tables and 5,689 columns.
+- The built landing page, application assets, robots file, sitemap and social image returned HTTP 200 from a local static server.
+
+### Generator and ZIP
+
+An in-memory browser-equivalent test exercised:
+
+- required validation;
+- semantic/privacy classification;
+- tag-based masking;
+- CDE tags;
+- row-count, duplicate, null and freshness metrics;
+- table and column comments;
+- explicit row-access decision;
+- de-identification acceptance check;
+- all eight output filenames and required sections;
+- individual content completeness;
+- ZIP local and central directory entries.
+
+The realistic randomized test selected:
+
+```text
+DEV.RAW.DUTCHIE_AUTHORIZED_USERS
+```
+
+Test-only decisions included:
+
+- `EMAIL` → semantic `EMAIL`, privacy `IDENTIFIER`;
+- `EMAIL` → `PARTIAL_EMAIL`;
+- a candidate ID for the duplicate-count branch;
+- one null-count field;
+- one timestamp for the freshness branch.
+
+All 16 validation checks passed, eight SQL files were generated, and the ZIP contained eight entries. These synthetic selections verified software behavior and are not approved governance recommendations for the table.
+
+### Git state
+
+The initial application commit was pushed to `main` and the remote commit was verified.
+
+### Snowflake CoCo handoff
+
+The regression test at `tests/coco-review.test.mjs` uses `DEV.RAW.DUTCHIE_LOYALTY_REGISTRATION` to verify that:
+
+- the autonomous task contains the selected table, live-schema query, aggregate-only profiles and JSON contract;
+- the task tells CoCo to execute every query itself with `SnowflakeSqlExecute` and not ask a user to relay results;
+- it contains no classification call or `ALTER TABLE` statement;
+- an output that does not certify SQL-tool execution is rejected;
+- a valid response can add a live `INSERTED_AT` override and prefill review fields;
+- imported acceptance expressions outside the bounded aggregate form are rejected;
+- live-schema, masking and final approval remain `false` after import.
+
+Run it with:
+
+```powershell
+node tests/coco-review.test.mjs
+```
+
+### Catalogue import
+
+`tests/catalog-import.test.mjs` verifies flat spreadsheet-row normalization, normalized JSON import, database/schema qualification, nullability, optional numeric metadata, duplicate rejection, and required-field errors.
+
+```powershell
+node tests/catalog-import.test.mjs
+```
+
+### Netlify deployment output
+
+`tests/deployment-output.test.mjs` verifies canonical and social URLs, structured-data entities, the exact CSP hash, security headers, production sitemap/robots alignment, preview `noindex` behavior, manifest icons and exclusion of the unused legacy catalogue.
+
+## Release checklist
+
+Run this checklist after changing application logic, validation, templates or the catalogue.
+
+### 1. Automated tests and production build
+
+```powershell
+npm test
+$env:CONTEXT = 'production'
+$env:SEO_INDEXABLE = 'true'
+$env:SITE_URL = 'https://example.com'
+npm run build
+npm run test:deploy
+```
+
+### 2. Catalogue integrity
+
+```powershell
+@'
+from pathlib import Path
+import json
+
+data = json.loads(Path('data/catalog.json').read_text(encoding='utf-8'))
+tables = data['tables']
+assert len(tables) == len({table['name'] for table in tables})
+assert all(table['name'].startswith('DEV.RAW.') for table in tables)
+assert all(table['columns'] for table in tables)
+print(len(tables), sum(len(table['columns']) for table in tables))
+'@ | python -
+```
+
+Update expected counts when the approved catalogue snapshot changes.
+
+### 3. HTTP smoke test
+
+```powershell
+python -m http.server 8080 --directory dist
+```
+
+In another terminal:
+
+```powershell
+(Invoke-WebRequest -UseBasicParsing http://localhost:8080/).StatusCode
+(Invoke-WebRequest -UseBasicParsing http://localhost:8080/robots.txt).StatusCode
+(Invoke-WebRequest -UseBasicParsing http://localhost:8080/sitemap.xml).StatusCode
+(Invoke-WebRequest -UseBasicParsing http://localhost:8080/assets/social-card.png).StatusCode
+```
+
+All should return `200` for a production build.
+
+### 4. Browser workflow
+
+Test at least:
+
+- XLSX and normalized JSON catalogue import;
+- a rejected catalogue with missing `DATA_TYPE` or duplicate columns;
+- a small table;
+- a table with more than 100 columns;
+- a table with `EMAIL` or `PHONE`;
+- a table requiring an added `INSERTED_AT` override;
+- an unsupported Boolean or Variant masking attempt;
+- exclusion of a column that already has decisions;
+- JSON export and import;
+- approval reset after import;
+- individual SQL download;
+- ZIP download.
+
+### 5. Generated SQL review
+
+Confirm:
+
+- exactly eight files;
+- filenames use the selected fully qualified table;
+- no `undefined`, `NaN` or `[object Object]` values;
+- all generated column references exist in the reviewed schema;
+- comments and string literals are escaped;
+- accepted classifications appear in file 2;
+- masking tags appear in file 3;
+- CDE/derived tags appear in file 4;
+- selected DMFs appear in file 5;
+- comments appear in file 6;
+- row-access decision appears in file 7;
+- acceptance expressions appear in file 8.
+
+### 6. ZIP integrity
+
+Open the archive and confirm it contains eight SQL files with readable UTF-8 content.
+
+### 7. Repository state
+
+```powershell
+git status --short
+git diff --check
+```
+
+The release should not include local drafts, credentials, raw query results or modernization project files.
+
+## Not covered by frontend testing
+
+The current test environment does not compile or execute SQL in Snowflake. Before operational use, an authorized reviewer must verify:
+
+- role and warehouse availability;
+- ownership and managed-access privileges;
+- tag allowed values;
+- masking-policy bodies and exemptions;
+- policy/type signatures;
+- DMF availability and signatures;
+- row-access policy signature;
+- SQL cost and expected results;
+- downstream behavior under masked roles.

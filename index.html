@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Import your Snowflake data catalogue, review masking, classification, tags and quality controls, then generate eight human-approved governance SQL scripts in your browser.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Governance Script Studio">
+  <meta name="application-name" content="Governance Script Studio">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#071f21">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Governance Script Studio">
+  <meta property="og:title" content="Snowflake Data Governance SQL Generator | Governance Script Studio">
+  <meta property="og:description" content="Turn an imported Snowflake data catalogue into reviewed masking, classification, quality and governance SQL—entirely in your browser.">
+  <meta property="og:url" content="/">
+  <meta property="og:image" content="/assets/social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Governance Script Studio — catalogue to governance-ready Snowflake SQL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Snowflake Data Governance SQL Generator">
+  <meta name="twitter:description" content="Import a catalogue. Review governance decisions. Generate eight Snowflake SQL scripts.">
+  <meta name="twitter:image" content="/assets/social-card.png">
+  <meta name="twitter:image:alt" content="Governance Script Studio — catalogue to governance-ready Snowflake SQL">
+  <link rel="canonical" href="/">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://cdn.sheetjs.com" crossorigin>
+  <title>Snowflake Data Governance SQL Generator | Governance Script Studio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["SoftwareApplication", "WebApplication"],
+        "name": "Governance Script Studio",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web browser",
+        "browserRequirements": "Requires JavaScript and a modern web browser",
+        "isAccessibleForFree": true,
+        "description": "A browser-based Snowflake data governance workspace that imports column-level catalogues and generates eight human-reviewed SQL scripts for classification, masking, tags, quality, documentation and access controls.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "XLSX, XLS, XLSB, CSV and JSON catalogue import",
+          "Snowflake classification and masking review",
+          "Data quality metric configuration",
+          "Eight downloadable governance SQL scripts",
+          "Browser-local processing"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Governance Script Studio upload catalogue data?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Catalogue parsing, governance configuration and SQL generation happen locally in the browser." }
+          },
+          {
+            "@type": "Question",
+            "name": "Which catalogue file formats are supported?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The application supports XLSX, XLS, XLSB, CSV and normalized JSON column-level catalogues." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the application execute SQL in Snowflake?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. It generates review-gated SQL files for authorized users to inspect and execute through their approved Snowflake workflow." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can automation approve governance decisions?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Suggestions and optional CoCo recommendations remain preliminary. Live-schema review, masking review and final governance approval must be confirmed by a person." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><div class="noscript-notice">Governance Script Studio needs JavaScript to import catalogues and generate SQL. The product overview remains available below.</div></noscript>
+  <div class="landing-page" id="landingPage">
+    <header class="landing-nav" aria-label="Primary navigation">
+      <a class="landing-brand" href="#top">
+        <span class="landing-brand-mark" aria-hidden="true">GS</span>
+        <span><strong>Governance</strong><small>Script Studio</small></span>
+      </a>
+      <nav class="landing-nav-links" aria-label="Landing page">
+        <a href="#workflow">Workflow</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#security">Security</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="landing-nav-cta" type="button" data-launch-studio>Open studio <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main id="top">
+      <section class="landing-hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="hero-badge"><span></span> Browser-local Snowflake governance</div>
+          <h1 id="hero-title">Turn your catalogue into <em>governance-ready</em> SQL.</h1>
+          <p>Import a column-level data catalogue, guide every masking, classification, quality and access decision through human review, then generate a complete eight-file Snowflake governance package.</p>
+          <div class="hero-actions">
+            <button class="landing-primary-cta" type="button" data-launch-studio>Import your catalogue <span aria-hidden="true">→</span></button>
+            <a class="landing-text-link" href="#workflow">See how it works</a>
+          </div>
+          <ul class="hero-proof" aria-label="Product guarantees">
+            <li><span aria-hidden="true">✓</span> No catalogue uploads</li>
+            <li><span aria-hidden="true">✓</span> No SQL execution</li>
+            <li><span aria-hidden="true">✓</span> Human approval gates</li>
+          </ul>
+        </div>
+
+        <div class="hero-product" aria-label="Governance Script Studio product preview">
+          <div class="product-window">
+            <div class="product-window-bar"><span></span><span></span><span></span><small>governance-script-studio</small></div>
+            <div class="product-shell-preview">
+              <div class="preview-rail">
+                <div class="preview-logo">GS</div>
+                <i class="active"></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="preview-canvas">
+                <div class="preview-topline"><span>Catalogue / Import</span><b>01</b></div>
+                <h2>Bring your own catalogue.</h2>
+                <div class="preview-upload">
+                  <span class="preview-file-icon">XLS</span>
+                  <div><strong>snowflake_catalogue.xlsx</strong><small>258 tables · 5,689 columns</small></div>
+                  <b>Ready</b>
+                </div>
+                <div class="preview-grid">
+                  <div><small>Tables</small><strong>258</strong><span>Imported</span></div>
+                  <div><small>Review prompts</small><strong>47</strong><span>Human review</span></div>
+                  <div><small>Output</small><strong>08</strong><span>SQL files</span></div>
+                </div>
+                <div class="preview-table">
+                  <div><span>CUSTOMER_ID</span><small>NUMBER</small><b>Identifier</b></div>
+                  <div><span>EMAIL</span><small>TEXT</small><b class="warm">Partial mask</b></div>
+                  <div><span>CREATED_AT</span><small>TIMESTAMP</small><b>Freshness</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-orbit orbit-one">Classification</div>
+          <div class="hero-orbit orbit-two">Quality DMFs</div>
+        </div>
+      </section>
+
+      <section class="landing-strip" aria-label="Supported governance areas">
+        <span>Catalogue import</span><i></i><span>Classification</span><i></i><span>Masking</span><i></i><span>Data quality</span><i></i><span>Access controls</span><i></i><span>SQL generation</span>
+      </section>
+
+      <section class="landing-section workflow-section" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-intro">
+          <span class="landing-kicker">A controlled path to production</span>
+          <h2 id="workflow-title">From spreadsheet to reviewable SQL, without the governance guesswork.</h2>
+          <p>The studio structures the work. Your governance, privacy and data teams keep the decisions.</p>
+        </div>
+        <div class="workflow-grid">
+          <article><span class="step-number">01</span><div class="workflow-icon">⇧</div><h3>Import the catalogue</h3><p>Bring XLSX, XLS, XLSB, CSV or JSON. The studio validates identifiers, types, table structure and duplicate columns before review begins.</p></article>
+          <article><span class="step-number">02</span><div class="workflow-icon">◎</div><h3>Review every control</h3><p>Compare the live schema, approve masking and classifications, define quality expectations, document the table and record access decisions.</p></article>
+          <article><span class="step-number">03</span><div class="workflow-icon">⌁</div><h3>Generate the package</h3><p>Pass the approval gates and download eight deterministic Snowflake SQL files, individually or as a single ZIP for code review.</p></article>
+        </div>
+      </section>
+
+      <section class="landing-section capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+        <div class="section-intro split-intro">
+          <div><span class="landing-kicker">Purpose-built controls</span><h2 id="capabilities-title">One workspace for the governance decisions that usually live everywhere.</h2></div>
+          <p>Move from physical schema facts to a consistent, auditable configuration before privileged SQL reaches Snowflake.</p>
+        </div>
+        <div class="capability-bento">
+          <article class="bento-card bento-wide">
+            <div><span class="bento-label">Catalogue intelligence</span><h3>Your schema is the starting point.</h3><p>Search every imported table, review column types and nullability, reconcile live-schema drift and add loader-managed fields without editing source files.</p></div>
+            <div class="mini-schema" aria-hidden="true"><div><b>EMAIL</b><span>TEXT</span><i>PII</i></div><div><b>ORDER_ID</b><span>NUMBER</span><i>CDE</i></div><div><b>UPDATED_AT</b><span>TIMESTAMP</span><i>DMF</i></div></div>
+          </article>
+          <article class="bento-card bento-dark"><span class="bento-label">Privacy controls</span><h3>Classification and masking stay connected.</h3><p>Map semantic and privacy categories to reviewed tag-based masking tiers.</p><div class="mask-stack" aria-hidden="true"><span>PARTIAL_EMAIL</span><span>FULL</span><span>CONDITIONAL</span></div></article>
+          <article class="bento-card"><span class="bento-label">Quality evidence</span><h3>Define the checks before the code.</h3><p>Configure row count, duplicate, null and timestamp freshness metrics with expected outcomes.</p><div class="quality-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+          <article class="bento-card"><span class="bento-label">Review controls</span><h3>Approval is a product feature.</h3><p>Live-schema, masking and final governance confirmations are explicit gates—not assumptions.</p><ul class="mini-checks"><li>Live schema compared <b>Required</b></li><li>Masking reviewed <b>Required</b></li><li>Owner approval <b>Required</b></li></ul></article>
+          <article class="bento-card bento-accent"><span class="bento-label">Deterministic output</span><div class="big-eight">8</div><h3>Ordered SQL files</h3><p>Pre-checks, classification, masking, tags, quality, documentation, row access and de-identification.</p></article>
+        </div>
+      </section>
+
+      <section class="landing-section security-section" id="security" aria-labelledby="security-title">
+        <div class="security-copy"><span class="landing-kicker">A deliberate trust boundary</span><h2 id="security-title">Your catalogue stays on your side of the browser.</h2><p>The application has no server-side catalogue store and no privileged Snowflake connection. Files are parsed in memory, drafts stay in local browser storage, and generated SQL is downloaded for your existing review and execution process.</p><button class="landing-secondary-cta" type="button" data-launch-studio>Open the browser workspace <span>→</span></button></div>
+        <div class="security-diagram" aria-label="Browser-local data flow">
+          <div class="diagram-source"><span>01</span><strong>Your catalogue</strong><small>XLSX · CSV · JSON</small></div>
+          <div class="diagram-arrow">→</div>
+          <div class="diagram-browser"><span>02</span><strong>Local browser</strong><small>Review · Validate · Generate</small><i>Nothing uploaded</i></div>
+          <div class="diagram-arrow">→</div>
+          <div class="diagram-source"><span>03</span><strong>Reviewed SQL</strong><small>8 files · ZIP export</small></div>
+        </div>
+      </section>
+
+      <section class="landing-section faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="section-intro"><span class="landing-kicker">Frequently asked</span><h2 id="faq-title">Know the boundary before you begin.</h2></div>
+        <div class="faq-list">
+          <details open><summary>Does Governance Script Studio upload catalogue data?<span>+</span></summary><p>No. Catalogue parsing, governance configuration and SQL generation happen locally in your browser.</p></details>
+          <details><summary>Which catalogue file formats are supported?<span>+</span></summary><p>XLSX, XLS, XLSB, CSV and normalized JSON column-level catalogues are supported. Standard Snowflake information-schema headers are recognized automatically.</p></details>
+          <details><summary>Does the application execute SQL in Snowflake?<span>+</span></summary><p>No. It generates review-gated SQL files for authorized users to inspect and execute through their approved Snowflake workflow.</p></details>
+          <details><summary>Can automation approve governance decisions?<span>+</span></summary><p>No. Suggestions and optional CoCo recommendations remain preliminary. Live-schema review, masking review and final governance approval must be confirmed by a person.</p></details>
+        </div>
+      </section>
+
+      <section class="landing-cta-section">
+        <div><span class="landing-kicker">Ready when your catalogue is</span><h2>Make the next governance review structured, repeatable and reviewable.</h2></div>
+        <button class="landing-primary-cta light" type="button" data-launch-studio>Launch Governance Script Studio <span>→</span></button>
+      </section>
+    </main>
+
+    <footer class="landing-footer">
+      <a class="landing-brand" href="#top"><span class="landing-brand-mark" aria-hidden="true">GS</span><span><strong>Governance</strong><small>Script Studio</small></span></a>
+      <p>Browser-local Snowflake governance configuration and SQL generation.</p>
+      <nav><a href="#workflow">Workflow</a><a href="#security">Security</a><a href="docs/USER_GUIDE.md">User guide</a></nav>
+    </footer>
+  </div>
+
+  <div class="app-shell hidden" id="studioShell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">GS</div>
+        <div>
+          <strong>Governance</strong>
+          <span>Script Studio</span>
+        </div>
+      </div>
+
+      <button class="studio-back" type="button" data-show-landing><span aria-hidden="true">←</span> Back to overview</button>
+
+      <div class="catalog-summary">
+        <span class="eyebrow">Imported catalogue</span>
+        <strong id="catalogTableCount">No catalogue</strong>
+        <span id="catalogColumnCount">Import XLSX or JSON</span>
+      </div>
+
+      <nav class="step-nav" aria-label="Generator steps">
+        <button class="step-link active" data-step="catalogue"><span>01</span>Catalogue</button>
+        <button class="step-link" data-step="masking"><span>02</span>Masking</button>
+        <button class="step-link" data-step="tags"><span>03</span>Tags</button>
+        <button class="step-link" data-step="quality"><span>04</span>Quality</button>
+        <button class="step-link" data-step="documentation"><span>05</span>Documentation</button>
+        <button class="step-link" data-step="controls"><span>06</span>Controls</button>
+        <button class="step-link" data-step="review"><span>07</span>Review & generate</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="privacy-note">
+          <span class="status-dot"></span>
+          Runs entirely in your browser
+        </div>
+        <span>No embedded AI · No SQL execution</span>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Snowflake governance automation</span>
+          <h1 id="pageTitle">Choose a table</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="button secondary" id="importCatalogueTopBtn">Import catalogue</button>
+          <button class="button ghost" id="importConfigBtn" disabled>Import saved config</button>
+          <button class="button ghost" id="exportConfigBtn" disabled>Export JSON</button>
+          <input id="catalogImportInput" type="file" accept=".xlsx,.xls,.xlsb,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,application/json,.json" hidden>
+          <input id="importConfigInput" type="file" accept="application/json,.json" hidden>
+        </div>
+      </header>
+
+      <div id="globalNotice" class="notice warning hidden" role="status"></div>
+
+      <section class="step-panel active" data-panel="catalogue">
+        <div class="section-heading">
+          <div>
+            <span class="step-kicker">Step 1</span>
+            <h2>Select and verify the physical table</h2>
+            <p>Import a column-level catalogue, choose a table, then compare it with Snowflake before approving any generated scripts.</p>
+          </div>
+        </div>
+
+        <article class="card catalog-import-card" id="catalogImportCard">
+          <div class="catalog-import-copy">
+            <span class="eyebrow">Catalogue source</span>
+            <h3>Import your data catalogue</h3>
+            <p>Upload an XLSX, XLS, XLSB, CSV, or normalized JSON file. The file stays in this browser and drives every table, column, review, and generated governance script.</p>
+            <p class="catalog-format-hint">Spreadsheet headers: <code>TABLE_NAME</code>, <code>COLUMN_NAME</code>, <code>DATA_TYPE</code>, <code>IS_NULLABLE</code>, and <code>ORDINAL_POSITION</code>. Optional <code>DATABASE_NAME</code> and <code>SCHEMA_NAME</code> default to DEV and RAW.</p>
+          </div>
+          <div class="catalog-drop-zone" id="catalogDropZone" aria-label="Import data catalogue">
+            <strong>Drop catalogue here</strong>
+            <span>or choose a file from this device</span>
+            <button class="button primary" id="importCatalogueBtn" type="button">Choose catalogue file</button>
+            <small id="catalogImportStatus">No catalogue imported yet</small>
+          </div>
+        </article>
+
+        <div class="grid two-one">
+          <article class="card table-picker-card">
+            <label for="tableSearch">Find an imported table</label>
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+              <input id="tableSearch" type="search" placeholder="Search by table name…" autocomplete="off">
+            </div>
+            <div id="tableResults" class="table-results" role="listbox" aria-label="Imported catalogue tables"></div>
+          </article>
+
+          <article class="card selection-card">
+            <span class="eyebrow">Selected table</span>
+            <h3 id="selectedTableName">Nothing selected</h3>
+            <div class="metric-row">
+              <div><strong id="selectedColumnCount">—</strong><span>columns</span></div>
+              <div><strong id="suggestionCount">—</strong><span>review prompts</span></div>
+              <div><strong id="overrideCount">—</strong><span>overrides</span></div>
+            </div>
+            <button class="button secondary full" id="copySchemaQueryBtn" disabled>Copy live-schema query</button>
+          </article>
+        </div>
+
+        <article class="card hidden coco-review-card" id="cocoReviewCard">
+          <div class="card-header">
+            <div>
+              <span class="eyebrow">Optional review accelerator</span>
+              <h3>Snowflake CoCo review handoff</h3>
+            </div>
+            <span class="source-pill" id="cocoReviewStatusPill">Not imported</span>
+          </div>
+          <p class="coco-intro">Generate one autonomous task file. CoCo executes its read-only Snowflake queries, analyzes the aggregate evidence and returns structured JSON for governance review.</p>
+          <div class="handoff-flow" aria-label="CoCo review workflow">
+            <div><span>1</span><strong>Download task</strong><small>Self-contained agent instructions, profiling queries and response contract</small></div>
+            <div><span>2</span><strong>Give it to CoCo</strong><small>CoCo executes every query itself and produces the completed JSON</small></div>
+            <div><span>3</span><strong>Review result</strong><small>Import recommendations and begin governance review</small></div>
+          </div>
+          <div class="coco-actions">
+            <button class="button secondary" id="downloadCocoKitBtn">Download autonomous CoCo task</button>
+            <button class="button ghost" id="importCocoReviewBtn">Import CoCo review JSON</button>
+            <input id="importCocoReviewInput" type="file" accept="application/json,.json,.txt" hidden>
+          </div>
+          <details class="coco-paste">
+            <summary>Paste CoCo JSON instead</summary>
+            <textarea id="cocoReviewPaste" rows="8" spellcheck="false" placeholder="Paste the JSON object returned by CoCo"></textarea>
+            <button class="button secondary" id="applyCocoReviewPasteBtn" type="button">Apply pasted recommendations</button>
+          </details>
+          <div id="cocoReviewSummary" class="review-import-summary">No CoCo review has been imported for this table.</div>
+          <ul id="cocoReviewWarnings" class="review-import-warnings hidden"></ul>
+          <details>
+            <summary>Automation boundary</summary>
+            <p>CoCo must certify that every planned query ran through SnowflakeSqlExecute before the application accepts its output. The imported evidence and recommendations are not approvals; live-schema, masking and final governance confirmations remain for the governance engineer.</p>
+          </details>
+        </article>
+
+        <article class="card hidden" id="schemaReviewCard">
+          <div class="card-header">
+            <div>
+              <span class="eyebrow">Schema review</span>
+              <h3>Catalogue columns and live overrides</h3>
+            </div>
+            <button class="button subtle" id="quickAddInsertedAt">+ Add INSERTED_AT</button>
+          </div>
+          <div class="schema-toolbar">
+            <input id="schemaColumnFilter" type="search" placeholder="Filter columns…">
+            <span id="schemaReviewSummary"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>#</th><th>Column</th><th>Type</th><th>Nullable</th><th>Source</th><th>Include</th></tr></thead>
+              <tbody id="schemaTableBody"></tbody>
+            </table>
+          </div>
+          <form id="addColumnForm" class="inline-form">
+            <input name="name" required placeholder="Additional column name">
+            <select name="type" required>
+              <option value="TEXT">TEXT</option><option value="NUMBER">NUMBER</option>
+              <option value="TIMESTAMP_NTZ">TIMESTAMP_NTZ</option><option value="DATE">DATE</option>
+              <option value="BOOLEAN">BOOLEAN</option><option value="FLOAT">FLOAT</option>
+              <option value="VARIANT">VARIANT</option>
+            </select>
+            <select name="nullable"><option value="YES">Nullable</option><option value="NO">Not nullable</option></select>
+            <button class="button secondary" type="submit">Add override</button>
+          </form>
+          <label class="confirmation-row">
+            <input type="checkbox" id="liveSchemaConfirmed">
+            <span>I compared this list with the current Snowflake <code>INFORMATION_SCHEMA.COLUMNS</code> result.</span>
+          </label>
+        </article>
+      </section>
+
+      <section class="step-panel" data-panel="masking">
+        <div class="section-heading">
+          <div><span class="step-kicker">Step 2</span><h2>Review classification and masking</h2><p>Suggestions are deterministic review prompts. Nothing is selected automatically.</p></div>
+          <button class="button secondary" id="applySuggestionsBtn">Apply visible suggestions</button>
+        </div>
+        <article class="card">
+          <div class="toolbar split">
+            <div class="segmented" role="group" aria-label="Masking filter">
+              <button class="active" data-mask-filter="all">All columns</button>
+              <button data-mask-filter="suggested">Suggested</button>
+              <button data-mask-filter="selected">Selected</button>
+            </div>
+            <input id="maskColumnFilter" type="search" placeholder="Filter columns…">
+          </div>
+          <div class="table-wrap tall">
+            <table class="decision-table">
+              <thead><tr><th>Column</th><th>Type</th><th>Review prompt</th><th>Semantic category</th><th>Privacy category</th><th>GDF_PII tier</th><th>Reason</th></tr></thead>
+              <tbody id="maskingTableBody"></tbody>
+            </table>
+          </div>
+          <label class="confirmation-row">
+            <input type="checkbox" id="maskingReviewConfirmed">
+            <span>I reviewed every column, including free text, identifiers, consent fields and unsupported Boolean/Variant fields.</span>
+          </label>
+        </article>
+      </section>
+
+      <section class="step-panel" data-panel="tags">
+        <div class="section-heading"><div><span class="step-kicker">Step 3</span><h2>Assign governance tags</h2><p>Choose critical data elements and derived identifiers, then confirm the object-level tags.</p></div></div>
+        <div class="grid two">
+          <article class="card">
+            <span class="eyebrow">Object tags</span>
+            <div class="form-grid">
+              <label>Source system<input id="sourceSystem" value="DUTCHIE"></label>
+              <label>Layer<input id="layerTag" value="RAW"></label>
+              <label>Retention<input id="retentionTag" value="NON_RECORD"></label>
+            </div>
+          </article>
+          <article class="card compact-info">
+            <span class="eyebrow">Selection guide</span>
+            <p><strong>CDE</strong> identifies columns with approved business-critical meaning.</p>
+            <p><strong>PII_DERIVED</strong> marks identifiers derived from or resolvable to a person.</p>
+          </article>
+        </div>
+        <article class="card">
+          <div class="schema-toolbar"><input id="tagColumnFilter" type="search" placeholder="Filter columns…"><span id="tagSelectionSummary"></span></div>
+          <div class="table-wrap tall"><table><thead><tr><th>Column</th><th>Type</th><th>CDE</th><th>PII derived</th></tr></thead><tbody id="tagTableBody"></tbody></table></div>
+        </article>
+      </section>
+
+      <section class="step-panel" data-panel="quality">
+        <div class="section-heading"><div><span class="step-kicker">Step 4</span><h2>Define data-quality controls</h2><p>Keys and thresholds require evidence. Leave a metric unselected when it has not been proven.</p></div></div>
+        <div class="grid two">
+          <article class="card form-card">
+            <label>DMF schedule<input id="dmfSchedule" value="USING CRON 0 6 * * * UTC"></label>
+            <label>Freshness timestamp<select id="freshnessColumn"><option value="">No freshness DMF</option></select></label>
+            <label>Approved baseline<textarea id="baselineNote" rows="3" placeholder="Example: approximately 356K rows, ±20%; confirmed 12 Nov 2026"></textarea></label>
+            <label>Expected DMF results<textarea id="qualityExpected" rows="3" placeholder="Expected duplicate count, null baseline and freshness threshold"></textarea></label>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Column metrics</span>
+            <h3>Duplicate key</h3><div id="duplicateKeyOptions" class="check-grid"></div>
+            <h3>Null-count columns</h3><div id="nullCountOptions" class="check-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="step-panel" data-panel="documentation">
+        <div class="section-heading"><div><span class="step-kicker">Step 5</span><h2>Document the table</h2><p>Comments become Snowflake metadata. Business terms remain review evidence for Collibra or the chosen catalogue.</p></div></div>
+        <article class="card form-card">
+          <label>Approved table description<textarea id="tableComment" rows="4" placeholder="What the table contains, source, grain, sensitivity and important limitations"></textarea></label>
+          <label>Business terms<input id="businessTerms" placeholder="Comma-separated, e.g. Loyalty Registration, Customer Consent"></label>
+        </article>
+        <article class="card">
+          <div class="schema-toolbar"><input id="commentColumnFilter" type="search" placeholder="Filter columns…"><span>Only completed comments are generated.</span></div>
+          <div id="columnComments" class="comment-list"></div>
+        </article>
+      </section>
+
+      <section class="step-panel" data-panel="controls">
+        <div class="section-heading"><div><span class="step-kicker">Step 6</span><h2>Access and de-identification decisions</h2><p>Record explicit decisions even when no policy or transformation is applied.</p></div></div>
+        <div class="grid two">
+          <article class="card form-card">
+            <span class="eyebrow">Operational context</span>
+            <label>Readers to notify<input id="readers" placeholder="Comma-separated users or teams"></label>
+            <details>
+              <summary>Execution roles</summary>
+              <div class="form-grid roles-grid">
+                <label>Governance<input data-role="governance" value="GOVERNANCE_ADMIN"></label>
+                <label>Warehouse<input data-role="warehouse" value="GOV_WH"></label>
+                <label>Owner<input data-role="owner" value="PLATFORM_ADMIN"></label>
+                <label>Ingest<input data-role="ingest" value="SVC_INGEST_PROD"></label>
+                <label>Data engineer<input data-role="data_engineer" value="DATA_ENGINEER"></label>
+                <label>Data modeler<input data-role="data_modeler" value="DATA_MODELER"></label>
+              </div>
+            </details>
+          </article>
+          <article class="card form-card">
+            <span class="eyebrow">Row access</span>
+            <label class="switch-row"><input type="checkbox" id="rowAccessApply"><span>Attach an approved existing row-access policy</span></label>
+            <div id="rowAccessFields" class="conditional-fields hidden">
+              <label>Fully qualified policy name<input id="rowPolicyName" placeholder="GOVERNANCE.POLICIES.POLICY_NAME"></label>
+              <label>Policy columns<select id="rowPolicyColumns" multiple></select></label>
+            </div>
+            <label>Decision and reason<textarea id="rowAccessReason" rows="4" placeholder="Why row access is or is not applied"></textarea></label>
+          </article>
+        </div>
+        <article class="card form-card">
+          <span class="eyebrow">De-identification / load-time treatment</span>
+          <label>Approved decision<textarea id="deidDecision" rows="4" placeholder="Example: EMAIL and PHONE are masked only; COMMENT is nulled by the DEV loader"></textarea></label>
+          <div class="card-header"><h3>Acceptance checks</h3><button class="button subtle" id="addDeidCheck">+ Add check</button></div>
+          <div id="deidChecks" class="repeat-list"></div>
+        </article>
+      </section>
+
+      <section class="step-panel" data-panel="review">
+        <div class="section-heading"><div><span class="step-kicker">Step 7</span><h2>Review and generate</h2><p>The generator creates SQL files only. It never connects to Snowflake or executes statements.</p></div></div>
+        <div class="grid two-one">
+          <article class="card">
+            <span class="eyebrow">Validation</span>
+            <div id="validationResults" class="validation-list"></div>
+            <label class="confirmation-row approval">
+              <input type="checkbox" id="humanApproved">
+              <span>I confirm these decisions have the required governance, privacy and data-owner approval.</span>
+            </label>
+            <button class="button primary full" id="generateBtn">Generate eight SQL scripts</button>
+          </article>
+          <article class="card summary-card">
+            <span class="eyebrow">Configuration summary</span>
+            <div id="configSummary"></div>
+          </article>
+        </div>
+        <article class="card hidden" id="generatedCard">
+          <div class="card-header">
+            <div><span class="eyebrow">Generated output</span><h3>Eight reviewed SQL scripts</h3></div>
+            <button class="button primary" id="downloadZipBtn">Download ZIP</button>
+          </div>
+          <div id="generatedFiles" class="file-grid"></div>
+          <details class="sql-preview"><summary>Preview selected script</summary><pre id="scriptPreview"></pre></details>
+        </article>
+      </section>
+
+      <footer class="workspace-footer">
+        <span>Governance Script Studio · deterministic static generator</span>
+        <span id="saveStatus">No table selected</span>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "governance-script-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-local Snowflake data governance configuration and SQL generation.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --check app.js && node --check scripts/build.mjs && node tests/catalog-import.test.mjs && node tests/coco-review.test.mjs",
+    "test:deploy": "node tests/deployment-output.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

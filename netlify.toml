@@ -1,0 +1,17 @@
+"$schema" = "https://open-api.netlify.com/netlify.schema.json"
+
+[build]
+  command = "npm test && npm run build && npm run test:deploy"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[context.production.environment]
+  SEO_INDEXABLE = "true"
+
+[context.deploy-preview.environment]
+  SEO_INDEXABLE = "false"
+
+[context.branch-deploy.environment]
+  SEO_INDEXABLE = "false"
