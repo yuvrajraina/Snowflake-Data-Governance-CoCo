@@ -1,7 +1,7 @@
 {
-  "name": "Governance Script Studio",
-  "short_name": "Governance Studio",
-  "description": "Import a Snowflake data catalogue and generate human-reviewed governance SQL in your browser.",
+  "name": "Heimdall Governance Studio",
+  "short_name": "Heimdall",
+  "description": "Import a Snowflake data catalogue and generate human-reviewed governance SQL securely in your browser.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -12,8 +12,8 @@
   "theme_color": "#071f21",
   "shortcuts": [
     {
-      "name": "Open governance workspace",
-      "short_name": "Open studio",
+      "name": "Open Heimdall workspace",
+      "short_name": "Open Heimdall",
       "url": "./#studio"
     }
   ],

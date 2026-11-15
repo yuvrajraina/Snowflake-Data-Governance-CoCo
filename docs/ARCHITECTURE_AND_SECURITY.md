@@ -2,7 +2,7 @@
 
 ## Architecture
 
-Governance Script Studio is a static browser application with a dependency-free Node build step for deploy-time SEO and security output.
+Heimdall Governance Studio is a static browser application with a dependency-free Node build step for deploy-time SEO and security output.
 
 ```mermaid
 flowchart LR

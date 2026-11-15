@@ -88,7 +88,7 @@ Run this checklist after changing application logic, validation, templates or th
 npm test
 $env:CONTEXT = 'production'
 $env:SEO_INDEXABLE = 'true'
-$env:SITE_URL = 'https://example.com'
+$env:SITE_URL = 'https://heimdall.yuvrajraina.com'
 npm run build
 npm run test:deploy
 ```

@@ -14,7 +14,7 @@ The repository is a static Netlify site with:
 Repository:
 
 ```text
-https://github.com/yuvrajrainamastek/governance-script-studio
+https://github.com/yuvrajraina/Snowflake-Data-Governance-CoCo
 ```
 
 ## Connect GitHub to Netlify
@@ -22,7 +22,7 @@ https://github.com/yuvrajrainamastek/governance-script-studio
 1. Sign in to Netlify.
 2. Choose **Add new project** → **Import an existing project**.
 3. Select GitHub and authorize access to the repository if required.
-4. Select `yuvrajrainamastek/governance-script-studio`.
+4. Select `yuvrajraina/Snowflake-Data-Governance-CoCo`.
 5. Use branch `main`.
 6. Leave the detected build command unchanged. Netlify reads it from `netlify.toml`.
 7. Confirm the publish directory is `dist`.
@@ -35,19 +35,19 @@ Every push to `main` will create a production deployment unless the Netlify proj
 - Enable deploy previews for pull requests.
 - Protect production changes through pull-request review.
 - Do not add secrets; the site has no secret-bearing runtime configuration.
-- Set the preferred custom domain as Netlify's primary domain before requesting indexing. Netlify's read-only `URL` build variable then becomes the canonical origin automatically.
+- Add `heimdall.yuvrajraina.com` as the primary custom domain before requesting indexing. The committed `SITE_URL` keeps canonical, sitemap and social URLs pinned to that public origin.
 - Keep form handling, functions and identity disabled unless a reviewed requirement introduces them.
 - Keep deploy previews enabled. The build applies HTML and HTTP `noindex` directives to them automatically.
 
 ## Local preview
 
 ```powershell
-git clone https://github.com/yuvrajrainamastek/governance-script-studio.git
-cd governance-script-studio
+git clone https://github.com/yuvrajraina/Snowflake-Data-Governance-CoCo.git
+cd Snowflake-Data-Governance-CoCo
 npm test
 $env:CONTEXT = 'production'
 $env:SEO_INDEXABLE = 'true'
-$env:SITE_URL = 'https://example.com'
+$env:SITE_URL = 'https://heimdall.yuvrajraina.com'
 npm run build
 npm run test:deploy
 python -m http.server 8080 --directory dist
@@ -75,7 +75,7 @@ npm run test:deploy
 
 Upload the `dist` directory. `index.html`, `_headers`, `_redirects`, `robots.txt` and `sitemap.xml` must all be at its root.
 
-For Git-connected production deploys, Netlify supplies the final main-site `URL`; no manual sitemap or canonical substitution is required.
+For Git-connected production deploys, `netlify.toml` supplies the final custom-domain origin; no manual sitemap or canonical substitution is required.
 
 ## Search launch checklist
 
@@ -118,7 +118,7 @@ Confirm the build completed and Netlify is publishing `dist`, not the repository
 
 ### Production build fails with a missing URL
 
-Netlify supplies `URL` automatically. For a local production build, set `SITE_URL` to the complete public origin before running `npm run build`.
+The committed Netlify configuration supplies `SITE_URL`. For a local production build against another origin, set `SITE_URL` to the complete public origin before running `npm run build`.
 
 ### Preview appears in search metadata
 

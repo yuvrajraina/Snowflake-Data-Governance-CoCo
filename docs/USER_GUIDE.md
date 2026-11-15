@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Governance Script Studio imports a column-level catalogue and guides a reviewer through the decisions required to produce eight Snowflake governance SQL files for one table. It automates formatting, validation and repeatable boilerplate; it does not make governance decisions or execute SQL.
+Heimdall Governance Studio imports a column-level catalogue and guides a reviewer through the decisions required to produce eight Snowflake governance SQL files for one table. It automates formatting, validation and repeatable boilerplate; it does not make governance decisions or execute SQL.
 
 ## Roles in the workflow
 

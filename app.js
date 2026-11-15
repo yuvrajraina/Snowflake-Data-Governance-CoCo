@@ -2,7 +2,7 @@
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-const STORAGE_PREFIX = "governance-script-studio:v1:";
+const STORAGE_PREFIX = "heimdall-governance-studio:v1:";
 const MASK_TIERS = ["", "FULL", "PARTIAL_EMAIL", "PARTIAL_PHONE", "PARTIAL_ZIP", "CONDITIONAL"];
 const RESERVED = new Set(["COMMENT", "CURRENT_DATE", "CURRENT_TIME", "CURRENT_TIMESTAMP"]);
 const COCO_REVIEW_VERSION = 2;
@@ -28,7 +28,7 @@ let state = null;
 let generatedScripts = {};
 let maskFilter = "all";
 let toastTimer;
-const LANDING_TITLE = "Snowflake Data Governance SQL Generator | Governance Script Studio";
+const LANDING_TITLE = "Heimdall Governance Studio | Snowflake SQL Generator";
 
 function setApplicationView(view, updateHistory = false) {
   const studioOpen = view === "studio";
@@ -39,7 +39,7 @@ function setApplicationView(view, updateHistory = false) {
   landing.setAttribute("aria-hidden", String(studioOpen));
   studio.setAttribute("aria-hidden", String(!studioOpen));
   document.body.classList.toggle("studio-open", studioOpen);
-  document.title = studioOpen ? "Governance Workspace | Governance Script Studio" : LANDING_TITLE;
+  document.title = studioOpen ? "Governance Workspace | Heimdall Governance Studio" : LANDING_TITLE;
   if (updateHistory) {
     const target = studioOpen ? "#studio" : `${window.location.pathname}${window.location.search}`;
     window.history.pushState({ view }, "", target);

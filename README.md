@@ -1,6 +1,6 @@
-# Governance Script Studio
+# Heimdall Governance Studio
 
-Governance Script Studio is a static web application that imports a column-level data catalogue and converts a human-reviewed governance configuration into eight Snowflake SQL files.
+Heimdall Governance Studio is a static web application that imports a column-level data catalogue and converts a human-reviewed governance configuration into eight Snowflake SQL files.
 
 The user supplies the catalogue as XLSX, XLS, XLSB, CSV, or normalized JSON. Parsing and governance work happen in the browser; the application does not upload catalogue data, connect to Snowflake, call an AI service, or execute SQL. An optional handoff generates a self-contained task that Snowflake CoCo executes autonomously before returning structured recommendations for human review.
 

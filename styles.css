@@ -39,7 +39,7 @@ code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospac
   display: flex; flex-direction: column; z-index: 10;
 }
 .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
-.brand-mark { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; color: var(--navy); background: var(--mint); font-weight: 900; letter-spacing: -.04em; }
+.brand-mark { width: 44px; height: 44px; display: block; flex: 0 0 auto; border-radius: 13px; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
 .brand strong, .brand span { display: block; }
 .brand strong { font-size: 16px; }
 .brand span { color: #9db8b7; font-size: 13px; margin-top: 2px; }
@@ -255,7 +255,7 @@ td code { color: #1d4d52; font-size: 11px; font-weight: 700; }
 .landing-page a { color: inherit; text-decoration: none; }
 .landing-nav { position: relative; z-index: 20; width: min(1180px, calc(100% - 48px)); height: 88px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid rgba(255,255,255,.1); }
 .landing-brand { display: inline-flex; align-items: center; gap: 11px; flex: 0 0 auto; }
-.landing-brand-mark { width: 39px; height: 39px; display: grid; place-items: center; color: #092325; background: var(--landing-accent); border-radius: 10px; font-size: 13px; font-weight: 950; letter-spacing: -.04em; box-shadow: 0 8px 26px rgba(200,243,106,.12); }
+.landing-brand-mark { width: 39px; height: 39px; display: block; flex: 0 0 auto; border-radius: 10px; object-fit: cover; box-shadow: 0 8px 26px rgba(200,243,106,.12); }
 .landing-brand strong, .landing-brand small { display: block; }
 .landing-brand strong { font-size: 14px; line-height: 1; }
 .landing-brand small { margin-top: 4px; color: var(--landing-muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
@@ -404,7 +404,7 @@ td code { color: #1d4d52; font-size: 11px; font-weight: 700; }
 #studioShell { background: #eef2ee; }
 #studioShell.app-shell { grid-template-columns: 260px minmax(0, 1fr); }
 #studioShell .sidebar { padding: 24px 19px; background: radial-gradient(circle at 15% 0%, rgba(200,243,106,.13), transparent 25%), linear-gradient(160deg, #0b2527, #06191b); }
-#studioShell .brand-mark { color: #0b2527; background: #c8f36a; }
+#studioShell .brand-mark { background: #071f21; }
 #studioShell .catalog-summary { border-color: rgba(255,255,255,.09); border-radius: 10px; background: rgba(255,255,255,.04); }
 #studioShell .step-link { border-radius: 8px; }
 #studioShell .step-link.active { color: #f6fff9; background: rgba(200,243,106,.1); box-shadow: inset 3px 0 #c8f36a; }

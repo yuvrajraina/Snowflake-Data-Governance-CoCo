@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Heimdall Governance Studio mark</title>
+  <desc id="description">A watchful eye set inside the letter H.</desc>
+  <rect width="512" height="512" rx="112" fill="#071f21"/>
+  <circle cx="422" cy="72" r="154" fill="#174a43" fill-opacity=".72"/>
+  <path d="M116 118h82v101h116V118h82v276h-82V293H198v101h-82z" fill="#c8f36a"/>
+  <path d="M198 256c17-24 36-36 58-36s41 12 58 36c-17 24-36 36-58 36s-41-12-58-36Z" fill="#071f21"/>
+  <circle cx="256" cy="256" r="18" fill="#c8f36a"/>
+</svg>

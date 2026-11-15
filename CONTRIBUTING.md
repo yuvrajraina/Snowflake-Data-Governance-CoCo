@@ -2,7 +2,7 @@
 
 ## Development model
 
-Governance Script Studio is intentionally buildless and dependency-free. Changes should preserve the ability to deploy the repository directly to Netlify without `npm install`, a build command or a backend service.
+Heimdall Governance Studio is a dependency-free static application with a small Node.js build step for deploy-time SEO and security output. Changes should preserve browser-local catalogue processing, deterministic SQL generation and Netlify deployment without a backend service.
 
 ## Before changing code
 

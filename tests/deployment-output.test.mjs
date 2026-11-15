@@ -10,7 +10,7 @@ const context = process.env.CONTEXT || "local";
 const indexable = process.env.SEO_INDEXABLE
   ? process.env.SEO_INDEXABLE === "true"
   : context === "production";
-const expectedOrigin = new URL(process.env.URL || process.env.SITE_URL || "http://localhost:8888").origin;
+const expectedOrigin = new URL(process.env.SITE_URL || process.env.URL || "http://localhost:8888").origin;
 
 const read = relativePath => fs.readFileSync(path.join(dist, relativePath), "utf8");
 const exists = relativePath => fs.existsSync(path.join(dist, relativePath));
@@ -18,7 +18,7 @@ const exists = relativePath => fs.existsSync(path.join(dist, relativePath));
 for (const file of [
   "index.html", "404.html", "app.js", "styles.css", "favicon.svg", "site.webmanifest",
   "robots.txt", "_headers", "_redirects", "assets/social-card.png", "assets/icon-192.png",
-  "assets/icon-512.png", "assets/apple-touch-icon.png"
+  "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/heimdall-mark.svg"
 ]) assert.ok(exists(file), `${file} must exist in the deploy output`);
 
 assert.equal(exists("data/catalog.json"), false, "the unused legacy catalogue must not be public");
@@ -35,12 +35,13 @@ assert.match(html, new RegExp(`<link rel="canonical" href="${canonical.replace(/
 assert.ok(html.includes(`<meta property="og:url" content="${canonical}">`));
 assert.ok(html.includes(`<meta property="og:image" content="${image}">`));
 assert.ok(html.includes(`<meta name="twitter:image" content="${image}">`));
+assert.ok(html.includes("Heimdall Governance Studio"), "the deploy must use the Heimdall product identity");
 
 const jsonLdSource = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
 assert.ok(jsonLdSource, "JSON-LD must be present");
 const structuredData = JSON.parse(jsonLdSource);
 const graph = structuredData["@graph"];
-assert.ok(graph.some(item => item["@type"] === "WebSite" && item.url === canonical));
+assert.ok(graph.some(item => item["@type"] === "WebSite" && item.url === canonical && item.name === "Heimdall Governance Studio"));
 assert.ok(graph.some(item => {
   const types = Array.isArray(item["@type"]) ? item["@type"] : [item["@type"]];
   return types.includes("SoftwareApplication") && item.url === canonical && item.image === image;
@@ -64,6 +65,7 @@ if (indexable) {
 }
 
 const manifest = JSON.parse(read("site.webmanifest"));
+assert.equal(manifest.name, "Heimdall Governance Studio");
 assert.ok(manifest.icons.some(icon => icon.sizes === "192x192"));
 assert.ok(manifest.icons.some(icon => icon.sizes === "512x512"));
 

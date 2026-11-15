@@ -16,7 +16,7 @@ const deployContext = process.env.CONTEXT || "local";
 const indexable = process.env.SEO_INDEXABLE
   ? process.env.SEO_INDEXABLE === "true"
   : deployContext === "production";
-const rawSiteUrl = process.env.URL || process.env.SITE_URL || (indexable ? "" : "http://localhost:8888");
+const rawSiteUrl = process.env.SITE_URL || process.env.URL || (indexable ? "" : "http://localhost:8888");
 
 if (!rawSiteUrl) {
   throw new Error("A production build requires Netlify URL or SITE_URL for canonical SEO output");
@@ -71,9 +71,10 @@ function updateStructuredData(html, siteOrigin) {
     "@type": "WebSite",
     "@id": `${rootUrl}#website`,
     url: rootUrl,
-    name: "Governance Script Studio",
+    name: "Heimdall Governance Studio",
     description: "Browser-local Snowflake data governance configuration and SQL generation.",
-    inLanguage: "en-US"
+    inLanguage: "en-US",
+    sameAs: ["https://github.com/yuvrajraina/Snowflake-Data-Governance-CoCo"]
   });
 
   const json = JSON.stringify(structuredData, null, 2).replaceAll("<", "\\u003c");
@@ -150,7 +151,7 @@ for (const file of ["index.html", "404.html", "styles.css", "app.js", "favicon.s
 }
 await cp(path.join(projectRoot, "docs"), path.join(outputDirectory, "docs"), { recursive: true });
 await mkdir(path.join(outputDirectory, "assets"), { recursive: true });
-for (const asset of ["social-card.png", "icon-192.png", "icon-512.png", "apple-touch-icon.png"]) {
+for (const asset of ["heimdall-mark.svg", "social-card.png", "icon-192.png", "icon-512.png", "apple-touch-icon.png"]) {
   await cp(path.join(projectRoot, "assets", asset), path.join(outputDirectory, "assets", asset));
 }
 

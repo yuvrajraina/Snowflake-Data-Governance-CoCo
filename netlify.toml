@@ -6,6 +6,7 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  SITE_URL = "https://heimdall.yuvrajraina.com"
 
 [context.production.environment]
   SEO_INDEXABLE = "true"
